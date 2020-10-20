@@ -1,49 +1,24 @@
 ﻿@{
-        Layout = null;
-        var seriesTitle = "The Amazing Spider-Man";
-        var issueNumber = 700;
-        var description = "<p>Final issue! Witness the final hours of Doctor Octopus' life and his one, last, great act of revenge! Even if Spider-Man survives... <strong>will Peter Parker?</strong></p>";
-        var artists = new string[]
-
-        {
-
-        "Script: Dan Slott",
-        "Pencils: Humberto Ramos",
-        "Inks: Victor Olazaba",
-        "Colors: Edgar Delgado",
-        "Letters: Chris Eliopoulos"
-    };
-
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Comic Book Detail";
 }
 
-<!DOCTYPE html>
+<h1>@ViewBag.seriesTitle</h1>
+<h2>Issue #@ViewBag.IssueNumber</h2>
 
-<html>
-<head>
-    <meta name="viewport" content="width=device-width"/>
-    <title></title>
-</head>
-<body>
+<h5>Description:</h5>
+<div>@Html.Raw(ViewBag.Description)</div>
+
+@if (ViewBag.Artists.Length > 0)
+{
+    <h5>Artists:</h5>
     <div>
-        <h1>@seriesTitle</h1>
-        <h2>Issue #@issueNumber</h2>
+        <ul>
+            @foreach (var artist in ViewBag.Artists)
+            {
 
-        <h5>Description:</h5>
-        <div>@Html.Raw(description)</div>
-
-        @if (artists.Length > 0)
-        {
-        <h5>Artists:</h5>
-        <div>
-            <ul>
-                @foreach (var artist in artists)
-                {
-
-                    <li>@artist</li>
-                }
-            </ul>
-        </div>
-        }
+                <li>@artist</li>
+            }
+        </ul>
     </div>
-</body>
-</html>
+}
